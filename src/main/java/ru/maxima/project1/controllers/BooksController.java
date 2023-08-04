@@ -18,7 +18,7 @@ import java.util.Optional;
  */
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping("/books")
 public class BooksController {
 
     private final BookDAO bookDAO;
