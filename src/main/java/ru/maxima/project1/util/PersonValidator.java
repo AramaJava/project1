@@ -34,5 +34,4 @@ public class PersonValidator implements Validator {
         if (personDAO.getPersonByFullName(person.getFullname()).isPresent())
             errors.rejectValue("fullName","" , "Человек с таким ФИО уже существует");
     }
-
 }
