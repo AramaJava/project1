@@ -19,7 +19,6 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
 import java.util.Objects;
 
-
 /**
  * @author AramaJava 24.07.2023
  */
@@ -29,6 +28,12 @@ import java.util.Objects;
 @EnableWebMvc
 @PropertySource("classpath:database.properties")
 public class SpringConfig implements WebMvcConfigurer {
+
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        return new JdbcTemplate(dataSource());
+    }
 
 
     private final ApplicationContext applicationContext;
@@ -46,7 +51,7 @@ public class SpringConfig implements WebMvcConfigurer {
     @Bean
     public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
+        templateResolver.setApplicationContext(this.applicationContext);
         templateResolver.setPrefix("/WEB-INF/views/");
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
@@ -73,12 +78,6 @@ public class SpringConfig implements WebMvcConfigurer {
         dataSource.setPassword(environment.getProperty("password"));
 
         return dataSource;
-    }
-
-
-    @Bean
-    public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
     }
 
 
