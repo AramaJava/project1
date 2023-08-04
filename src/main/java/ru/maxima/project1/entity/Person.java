@@ -13,7 +13,7 @@ public class Person {
 
     @NotEmpty(message = "ФИО не должно быть пустым")
     @Size(min = 3, max= 100, message = "ФИО должно быть от 3 до 100 символов")
-    private String fullname;
+    private String fullName;
 
     @Min(value = 1900, message = "Год рождения > 1900")
     private int yearOfBirth;
@@ -21,9 +21,9 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id, String fullname, int yearOfBirth) {
+    public Person(int id, String fullName, int yearOfBirth) {
         this.id = id;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.yearOfBirth = yearOfBirth;
     }
 
@@ -35,12 +35,12 @@ public class Person {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public int getYearOfBirth() {

@@ -32,16 +32,16 @@ public class PeopleController {
         return "people/index";
     }
 
-    @GetMapping("/search/{searchName}")
-    public String search(@PathVariable("searchName") String searchName, Model model) {
-        model.addAttribute("people", personDAO.findByNameContaining(searchName));
-        return "people/search";
-    }
+//    @GetMapping("/search/{searchName}")
+ //   public String search(@PathVariable("searchName") String searchName, Model model) {
+  //      model.addAttribute("people", personDAO.findByNameContaining(searchName));
+ //       return "people/search";
+//    }
 
     @GetMapping("/{id}")
     private String show(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.show(id));
-        model.addAttribute("books", personDAO.getBooksByPersonId(id));
+        model.addAttribute("books", personDAO.getBookByPersonId(id));
         return "people/show";
     }
 

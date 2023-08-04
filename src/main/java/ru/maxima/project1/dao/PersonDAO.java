@@ -39,13 +39,13 @@ public class PersonDAO {
 
     public void save(Person person) {
         jdbcTemplate.update("INSERT INTO person (full_name, year_of_birth) VALUES (?, ?)",
-                person.getFullname(),
+                person.getFullName(),
                 person.getYearOfBirth());
     }
 
     public void update(int id, Person updatedPerson) {
         jdbcTemplate.update("UPDATE person SET full_name=?, year_of_birth=? WHERE id=?",
-                updatedPerson.getFullname(),
+                updatedPerson.getFullName(),
                 updatedPerson.getYearOfBirth(),
                 id);
     }
