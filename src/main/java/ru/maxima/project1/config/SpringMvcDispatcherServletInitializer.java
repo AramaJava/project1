@@ -5,6 +5,7 @@ import jakarta.servlet.FilterRegistration;
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import java.util.EnumSet;
@@ -33,8 +34,15 @@ public class SpringMvcDispatcherServletInitializer extends AbstractAnnotationCon
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-
+        registerCharacterEncodingFilter(servletContext);
+        registerHiddenFieldFilter(servletContext);
     }
+
+    private void registerHiddenFieldFilter(ServletContext aContext) {
+        aContext.addFilter("HiddenHttpMethodFilter",
+                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null, true,"/*");
+    }
+
     private void registerCharacterEncodingFilter(ServletContext aContext) {
         EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
 
