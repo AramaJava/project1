@@ -1,3 +1,9 @@
+
+create database project1 with owner = postgres ENCODING ='UTF8';
+
+drop table if exists person;
+
+
 create table person (
                         id int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
                         full_name varchar(100) NOT NULL UNIQUE,
@@ -10,5 +16,5 @@ CREATE TABLE  book (
                       title varchar(100) NOT NULL,
                       author varchar(100) NOT NULL,
                       year int NOT NULL,
-                      person_id int REFERENCES Person(id) ON DELETE SET NULL
+                      person_id int REFERENCES person(id) ON DELETE SET NULL
 );
