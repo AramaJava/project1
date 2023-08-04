@@ -62,12 +62,13 @@ public class BookDAO {
         return jdbcTemplate.query("SELECT Person.* FROM Book JOIN Person ON Book.person_id = Person.id " +
                         "WHERE Book.id = ?", BeanPropertyRowMapper.newInstance(Person.class), id).stream().findAny();
     }
-    // Освбождает книгу (этот метод вызывается, когда человек возвращает книгу в библиотеку)
+
+    // Освбождаем книгу когда человек возвращает ее в библиотеку)
     public void release(int id) {
         jdbcTemplate.update("UPDATE Book SET person_id=NULL WHERE id=?", id);
     }
 
-    // Назначает книгу человеку (этот метод вызывается, когда человек забирает книгу из библиотеки)
+    // Назначаем книгу человеку когда человек забирает ее из библиотеки)
     public void assign(int id, Person selectedPerson) {
         jdbcTemplate.update("UPDATE Book SET person_id=? WHERE id=?", selectedPerson.getId(), id);
     }
