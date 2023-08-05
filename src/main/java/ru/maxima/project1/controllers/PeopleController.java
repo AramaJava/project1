@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.maxima.project1.dao.PersonDAO;
 import ru.maxima.project1.entity.Person;
-import ru.maxima.project1.util.PersonValidator;
 
 /**
  * @author AramaJava 26.07.2023
@@ -18,11 +17,10 @@ import ru.maxima.project1.util.PersonValidator;
 public class PeopleController {
 
     private final PersonDAO personDAO;
-    private final PersonValidator personValidator;
 
-    public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
+    public PeopleController(PersonDAO personDAO) {
         this.personDAO = personDAO;
-        this.personValidator = personValidator;
+
     }
 
     @GetMapping()
@@ -31,12 +29,6 @@ public class PeopleController {
         model.addAttribute("people", personDAO.index());
         return "people/index";
     }
-
-//    @GetMapping("/search/{searchName}")
- //   public String search(@PathVariable("searchName") String searchName, Model model) {
-  //      model.addAttribute("people", personDAO.findByNameContaining(searchName));
- //       return "people/search";
-//    }
 
     @GetMapping("/{id}")
     private String show(@PathVariable("id") int id, Model model) {
@@ -47,6 +39,7 @@ public class PeopleController {
 
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
+
         return "/people/new";
     }
 

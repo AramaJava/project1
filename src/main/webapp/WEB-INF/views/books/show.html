@@ -31,12 +31,12 @@
 <hr/>
 
 <form th:method="GET" th:action="@{/books/{id}/edit(id=${book.getId()})}">
-    <input type="submit" value="Редактировать"/>
+    <input type="submit" value="Редактировать книгу"/>
 </form>
 
-<form th:method="POST" th:action="@{/books/{id}(id=${book.getId()})}">
-    <input type="submit" value="Удалить"/>
+<form th:method="POST" th:action="@{/books/{id}/delete (id=${book.getId()})}">
+    <input type="submit" value="Удалить книгу"/>
 </form>
-
+<a href="/books">Книги...</a>
 </body>
 </html>

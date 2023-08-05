@@ -10,7 +10,7 @@ import ru.maxima.project1.dao.PersonDAO;
 import ru.maxima.project1.dao.BookDAO;
 import ru.maxima.project1.entity.Book;
 import ru.maxima.project1.entity.Person;
-import ru.maxima.project1.util.PersonValidator;
+
 
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public class BooksController {
     private final PersonDAO personDAO;
 
     @Autowired
-    public BooksController(PersonDAO personDAO, PersonValidator personValidator, BookDAO bookDAO) {
+    public BooksController(PersonDAO personDAO, BookDAO bookDAO) {
         this.bookDAO = bookDAO;
         this.personDAO = personDAO;
     }
@@ -97,11 +97,11 @@ public class BooksController {
     }
 
     // назначаем книгу
-    @PostMapping("/{id}assign")
+    @PostMapping("/{id}/assign")
     public String assign(@PathVariable("id") int id, @ModelAttribute("person") Person selectedPerson) {
         // у выбранного человека назначено только поле id, остальные поля null
         bookDAO.assign(id, selectedPerson);
-        return "redirect:/books" + id;
+        return "redirect:/books/" + id;
     }
 
 

@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Show</title>
+    <title>Информация о читателе</title>
 </head>
 <body>
 <p th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}">VALUE</p>
 
 <div th:if="${books.isEmpty()}">
-    <p>Человек пока не взял ни одной книги</p>
+    <p>Читатель пока не взял ни одной книги</p>
     <hr/>
 </div>
 
@@ -24,11 +24,11 @@
 </div>
 
 <form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
-    <input type="submit" value="Редактировать"/>
+    <input type="submit" value="Редактировать читателя"/>
 </form>
 
-<form th:method="POST" th:action="@{/people/{id}(id=${person.getId()})}">
-    <input type="submit" value="Удалить"/>
+<form th:method="POST" th:action="@{/people/{id}/delete (id=${person.getId()})}">
+    <input type="submit" value="Удалить читателя"/>
 </form>
 
 </body>
