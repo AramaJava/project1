@@ -15,7 +15,7 @@
 
 <div th:if="${!books.isEmpty()}">
     <hr/>
-    <b>Книги:</b>
+    <b>Взятые книги:</b>
     <br/>
     <table th:each="book : ${books}">
         <tr th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYear()}">book</tr>
@@ -30,6 +30,6 @@
 <form th:method="POST" th:action="@{/people/{id}/delete (id=${person.getId()})}">
     <input type="submit" value="Удалить читателя"/>
 </form>
-
+<a th:href="@{/books}">Книги...</a>
 </body>
 </html>
